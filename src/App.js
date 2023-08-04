@@ -1,41 +1,24 @@
 import React from 'react';
-import {
-  ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-  theme,
-} from '@chakra-ui/react';
-import { ColorModeSwitcher } from './ColorModeSwitcher';
-import { Logo } from './Logo';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Header from './components/Header';
+import Home from './components/Home';
 
 function App() {
   return (
-    <ChakraProvider theme={theme}>
-      <Box textAlign="center" fontSize="xl">
-        <Grid minH="100vh" p={3}>
-          <ColorModeSwitcher justifySelf="flex-end" />
-          <VStack spacing={8}>
-            <Logo h="40vmin" pointerEvents="none" />
-            <Text>
-              Edit <Code fontSize="xl">src/App.js</Code> and save to reload.
-            </Text>
-            <Link
-              color="teal.500"
-              href="https://chakra-ui.com"
-              fontSize="2xl"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn Chakra
-            </Link>
-          </VStack>
-        </Grid>
-      </Box>
-    </ChakraProvider>
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route path='/' element={<Home country="in" category="general" />} />
+        <Route path='/business' element={<Home country="in" category="business" />} />
+        <Route path='/entertainment' element={<Home country="in" category="entertainment" />} />
+        <Route path='/health' element={<Home country="in" category="health" />} />
+        <Route path='/science' element={<Home country="in" category="science" />} />
+        <Route path='/sports' element={<Home country="in" category="sports" />} />
+        <Route path='/technology' element={<Home country="in" category="technology" />} />
+
+        <Route path='*' element={<div>Page not found</div>} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
