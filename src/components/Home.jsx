@@ -17,15 +17,18 @@ import {
   Button,
 } from '@chakra-ui/react';
 import Loader from './Loader';
+import ErrorComponent from "./ErrorComponent";
 
 const Home = ({ country, category }) => {
   const [news, setNews] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(false);
 
+  // Function to fetch top headlines
   useEffect(() => {
-    const fetchTopHeadings = async pageNum => {
+    const fetchTopHeadings = async (pageNum) => {
       try {
         setIsLoading(true);
         const { data } = await axios.get(
@@ -33,13 +36,20 @@ const Home = ({ country, category }) => {
         );
         setNews(data.articles);
         setTotalPages(Math.ceil(data.totalResults / 20));
+        setIsLoading(false);
       } catch (error) {
         console.error(error);
+        setError(true);
       }
-      setIsLoading(false);
     };
-    fetchTopHeadings(page);
+  
+    fetchTopHeadings(page); // Call the function inside the useEffect
   }, [page, country, category]);
+  
+
+  
+
+  if (error) return <ErrorComponent message={"Error While Fetching News"} />;
 
   const nextPage = () => {
     if (page < totalPages) {

@@ -50,3 +50,12 @@
     justify-content: center;
     align-items: center;
 }
+
+/* CSS For ErrorComponent */
+#errormsg {
+    padding-top: 100px;
+    text-align: center;
+    font-weight: 600;
+    color: rgb(197, 115, 115);
+    font-size: 1.1rem;
+}

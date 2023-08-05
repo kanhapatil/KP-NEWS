@@ -27,9 +27,9 @@ const Header = () => {
         p={'0'}
         w={'10'}
         h={'10'}
-        borderRadius={'full'}
-        zIndex={'overlay'}
-        onClick={onOpen}
+        borderRadius={'full'} 
+        zIndex={'overlay'} 
+        onClick={onOpen} 
       >
         <BiMenuAltLeft size={'20'} />
       </Button>
